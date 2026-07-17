@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="hu"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Árvay családi találkozó</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,sans-serif;height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#101522,#1b2a41);color:#fff;overflow:hidden}
+body:before{content:"";position:fixed;inset:0;background:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80') center/cover;filter:blur(8px) brightness(.35);z-index:-2}
+.card{background:rgba(255,255,255,.12);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.2);border-radius:24px;padding:40px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+h1{margin:0 0 8px;font-size:3rem}p{opacity:.8}
+.grid{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.box{min-width:120px;background:rgba(255,255,255,.08);border-radius:18px;padding:20px}
+.num{font-size:3.3rem;font-weight:800;font-variant-numeric:tabular-nums;transition:.25s}
+.lab{text-transform:uppercase;opacity:.7;font-size:.8rem;letter-spacing:2px}
+.conf{position:fixed;top:-10px;width:8px;height:14px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+</style></head><body>
+<div class="card"><h1>Árvay családi találkozó</h1><p>2026. július 18. • 13:00</p>
+<div class="grid">
+<div class=box><div id=d class=num>0</div><div class=lab>Nap</div></div>
+<div class=box><div id=h class=num>00</div><div class=lab>Óra</div></div>
+<div class=box><div id=m class=num>00</div><div class=lab>Perc</div></div>
+<div class=box><div id=s class=num>00</div><div class=lab>Mp</div></div>
+</div><h2 id=msg></h2></div>
+<script>
+const target=new Date("2026-07-18T13:00:00");
+let done=false;
+function confetti(){
+for(let i=0;i<220;i++){
+ let e=document.createElement("div");e.className="conf";
+ e.style.left=Math.random()*100+"vw";
+ e.style.background=`hsl(${Math.random()*360},70%,60%)`;
+ e.style.animationDuration=3+Math.random()*3+"s";
+ document.body.appendChild(e);
+ setTimeout(()=>e.remove(),6500);
+}}
+setInterval(()=>{
+let t=target-new Date();
+if(t<=0){if(!done){done=true;document.getElementById("msg").textContent="🎉 Elkezdődött az Árvay családi találkozó!";confetti();}return;}
+let D=Math.floor(t/86400000),H=Math.floor(t/3600000)%24,M=Math.floor(t/60000)%60,S=Math.floor(t/1000)%60;
+d.textContent=D;h.textContent=String(H).padStart(2,'0');m.textContent=String(M).padStart(2,'0');s.textContent=String(S).padStart(2,'0');
+},250);
+</script></body></html>
